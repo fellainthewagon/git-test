@@ -1,1 +1,12 @@
-use "git rm --cached <file>..." to unstage
+git rm --cached <file> === unstage file from index
+git log === shows all commits
+git log --oneline === short version of "git log"
+git restore <file> === discard changes in working directory
+git checkout <shortHashOfCommit> === switch to target commit - it shows state all files by target commit
+git checkout master === switch to Head
+
+git revert <shortHashOfCommit> === отменяет все изменения в указанном коммите. (shift + : -> wq)
+
+git reset <shortHashOfCommit> === удаляет коммиты до указанного, но не возвращает состояние файлов к нему.
+git reset <shortHashOfCommit> --hard === удаляет коммиты до указанного и возвращает состояние файлов к нему.
+
