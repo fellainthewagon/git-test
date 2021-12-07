@@ -18,11 +18,13 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '14.x'
-    - name: ls
-      run: ls
+    - name: test env
+      run: | 
+        echo "my secret is ${{ secrets.HELLO }}"
+        echo "and ${{ secrets.BOOM }}"
+        echo "and ${{ secrets.NOT_EXIST }}"
     - name: Running linters...
       run: |
-        echo "my secret is $HELLO"
         npm i
 #        npm run lint
     
