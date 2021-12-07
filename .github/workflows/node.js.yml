@@ -23,8 +23,8 @@ jobs:
       env:
         HELLO: ${{ secrets.HELLO }}
       run: |
-        echo "$HELLO"
-        echo "${{ secrets.FELLA }}"
+        example-command "$HELLO"
+        echo "my secret is ${{ secrets.FELLA }}"
         npm i
         npm run lint
     
