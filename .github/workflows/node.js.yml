@@ -18,11 +18,12 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '14.x'
-    - name: test env
+    - name: change file
       run: | 
         echo "my secret is ${{ secrets.HELLO }}"
-        echo "and ${{ secrets.BOOM }}"
-        echo "and ${{ secrets.NOT_EXIST }}"
+        mv commands.txt commands2.txt
+        sed -i "s~index~${{ secrets.HELLO }}~" commands2.txt
+        cat commands2.txt
     - name: Running linters...
       run: |
         npm i
