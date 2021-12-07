@@ -29,7 +29,7 @@ jobs:
     - name: Running linters...
       run: |
         npm i
-        npm run lint
+#        npm run lint
     
   another_job:
     runs-on: ubuntu-latest
