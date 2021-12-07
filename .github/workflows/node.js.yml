@@ -20,7 +20,11 @@ jobs:
     - name: ls
       run: ls
     - name: Running linters...
+      env:
+        HELLO: ${{ secrets.HELLO }}
       run: |
+        echo "$HELLO"
+        echo "${{ secrets.FELLA }}"
         npm i
         npm run lint
     
