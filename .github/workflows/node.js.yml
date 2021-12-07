@@ -18,17 +18,23 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '14.x'
-    - name: change file
-      run: | 
-        echo "my secret is ${{ secrets.HELLO }}"
-        mv commands.txt commands2.txt
-        sed -i "s~index~${{ secrets.HELLO }}~" commands2.txt
-        cat commands2.txt
+#     - name: change file
+#       run: | 
+#         echo "my secret is ${{ secrets.HELLO }}"
+#         mv commands.txt commands2.txt
+#         sed -i "s~index~${{ secrets.HELLO }}~" commands2.txt
+#         cat commands2.txt
+    - name: Ls files
+      run: ls
     - name: Running linters...
       run: |
         npm i
-#        npm run lint
+        npm run lint
     
-#   test:
-#     runs-on: ubuntu-latest
-#     needs: [lint]
+  another_job:
+    runs-on: ubuntu-latest
+    needs: [lint]
+    
+    steps:
+    - name: Ls files
+      run: ls
