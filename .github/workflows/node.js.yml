@@ -51,3 +51,9 @@ jobs:
     - name: Login to Amazon ECR
       id: login-ecr
       uses: aws-actions/amazon-ecr-login@v1
+    
+    - name: Pull and Push to ECR
+      run: |
+        docker pull hello-world
+        docker tag hello-world:latest public.ecr.aws/n2n4a4x9/lobby:hello-world
+        docker push public.ecr.aws/n2n4a4x9/lobby:hello-world
