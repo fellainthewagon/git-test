@@ -53,11 +53,12 @@ jobs:
 #       id: login-ecr
 #       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Ls files
-      run: ls
-      
+    - name: Clone repo...
+      uses: actions/checkout@v2
+  
     - name: Pull and Push to ECR
       run: |
+        ls -la
         cat ${{ env.INDEX }}
         aws ecr-public get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin public.ecr.aws/n2n4a4x9
         docker pull hello-world
