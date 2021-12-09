@@ -8,7 +8,7 @@ on:
     
 env:
   AWS_REGION: us-east-1
-  COMMANDS: ./commands.txt
+  INDEX: index.html
   
   
 # jobs:
@@ -52,11 +52,13 @@ jobs:
 #     - name: Login to Amazon ECR
 #       id: login-ecr
 #       uses: aws-actions/amazon-ecr-login@v1
-    
+
+    - name: Ls files
+      run: ls
+      
     - name: Pull and Push to ECR
       run: |
-        ls
-        cat ${{ env.COMMANDS }}
+        cat ${{ env.INDEX }}
         aws ecr-public get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin public.ecr.aws/n2n4a4x9
         docker pull hello-world
         docker tag hello-world:latest public.ecr.aws/n2n4a4x9/lobby:${{ github.sha }}
