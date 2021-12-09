@@ -7,7 +7,7 @@ on:
     branches: '**'
     
 env:
-  AWS_REGION: us-east-1
+  AWS_REGION: eu-central-1
   INDEX: index.html
   
   
@@ -53,15 +53,13 @@ jobs:
 #       id: login-ecr
 #       uses: aws-actions/amazon-ecr-login@v1
 
-    - name: Clone repo...
-      uses: actions/checkout@v2
+#     - name: Clone repo...
+#       uses: actions/checkout@v2
   
     - name: Pull and Push to ECR
       run: |
-        ls -la
-        cat ${{ env.INDEX }}
         aws ecr-public get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin public.ecr.aws/n2n4a4x9
         docker pull hello-world
         docker tag hello-world:latest public.ecr.aws/n2n4a4x9/lobby:${{ github.sha }}
         docker images
-        docker push public.ecr.aws/n2n4a4x9/lobby:hello-world
+        docker push public.ecr.aws/n2n4a4x9/lobby:${{ github.sha }}
